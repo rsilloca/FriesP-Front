@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./@fury/styles/core";
+@import "./app/app.theme";
+
+.friesp-page {
+    padding: 2rem;
+}
+
+.card-page {
+    position: relative !important;
+    margin-top: 2rem;
+    border-radius: 8px !important;
+}
+
+.floating-icon-container {
+    position: absolute;
+    top: -1rem;
+    padding: 1rem 1.2rem;
+    background-color: #ffbc67;
+    border-radius: 8px;
+}
+
+.floating-icon {
+    color: white;
+}
+
+.title-card-page {
+    margin-left: 4rem;
+}
+
+.filtro-page {
+    margin-top: 1rem;
+}
+
+.header-table {
+    margin: 0 0 0 1rem !important;
+}
+
+table {
+    width: 100%;
+}
