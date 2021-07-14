@@ -1,1 +1,128 @@
-<p>movimientos works!</p>
+<div class="friesp-page">
+    <mat-card class="card-page">
+
+        <div class="floating-icon-container">
+            <mat-icon class="floating-icon">sync_alt</mat-icon>
+        </div>
+
+        <mat-card-header>
+            <mat-card-title class="title-card-page">Movimientos</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div fxLayout="column" fxLayoutGap="1rem">
+                <div fxLayout="column" class="filtro-page">
+                    <div fxLayout="row" fxLayoutGap="1rem">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(25% - 3rem)">
+                            <mat-label>Código de Artículo</mat-label>
+                            <input matInput placeholder="Ingrese Código de Artículo">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(25% - 3rem)">
+                            <mat-label>Nombre de Artículo</mat-label>
+                            <input matInput placeholder="Ingrese Nombre de Artículo">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(25% - 3rem)">
+                            <mat-label>Nombre de Proveedor</mat-label>
+                            <input matInput placeholder="Ingrese Nombre de Proveedor">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" fxFlex="calc(25% - 3rem)">
+                            <mat-label>Cantidad en Stock</mat-label>
+                            <mat-select>
+                                <mat-option value="maytomen">Mayor a Menor</mat-option>
+                                <mat-option value="mentomay">Menor a Mayor</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary">Buscar</button>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between end">
+                    <h4 class="header-table">Lista de Movimientos</h4>
+                    <button mat-mini-fab color="primary">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z4">
+                    <!-- Columna Nro Artículo -->
+                    <ng-container matColumnDef="nro">
+                        <th mat-header-cell *matHeaderCellDef> Nro. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nro}} </td>
+                    </ng-container>
+
+                    <!-- Columna Codigo Artículo -->
+                    <ng-container matColumnDef="codigo">
+                        <th mat-header-cell *matHeaderCellDef> Código de Artículo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+                    </ng-container>
+
+                    <!-- Columna Nombre Artículo -->
+                    <ng-container matColumnDef="articulo">
+                        <th mat-header-cell *matHeaderCellDef> Nombre de Artículo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.articulo}} </td>
+                    </ng-container>
+
+                    <!-- Columna Unidad de Medida -->
+                    <ng-container matColumnDef="unidadmedida">
+                        <th mat-header-cell *matHeaderCellDef> Unidad de Medida </th>
+                        <td mat-cell *matCellDef="let element"> {{element.unidadmedida}} </td>
+                    </ng-container>
+
+                    <!-- Columna Mínimo Permitido -->
+                    <ng-container matColumnDef="minpermitido">
+                        <th mat-header-cell *matHeaderCellDef> Mínimo Permitido </th>
+                        <td mat-cell *matCellDef="let element"> {{element.minpermitido}} </td>
+                    </ng-container>
+
+                    <!-- Columna Máximo Permitido -->
+                    <ng-container matColumnDef="maxpermitido">
+                        <th mat-header-cell *matHeaderCellDef> Máximo Permitido </th>
+                        <td mat-cell *matCellDef="let element"> {{element.maxpermitido}} </td>
+                    </ng-container>
+
+                    <!-- Columna Proveedor -->
+                    <ng-container matColumnDef="proveedor">
+                        <th mat-header-cell *matHeaderCellDef> Proveedor </th>
+                        <td mat-cell *matCellDef="let element"> {{element.proveedor}} </td>
+                    </ng-container>
+
+                    <!-- Columna Acción -->
+                    <ng-container matColumnDef="accion">
+                        <th mat-header-cell *matHeaderCellDef> Acción </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <div>
+                                <button mat-icon-button class="soloio"> 
+                                    <mat-icon aria-hidden="false">arrow_upward</mat-icon>
+                                </button>
+                                <button mat-icon-button color="primary">
+                                    <mat-icon aria-hidden="false">arrow_downward</mat-icon>
+                                </button>
+                                <button mat-icon-button color="basic">
+                                    <mat-icon aria-hidden="false">remove_red_eye</mat-icon>
+                                </button>
+                                <button mat-icon-button color="basic">
+                                    <mat-icon aria-hidden="false">edit</mat-icon>
+                                </button>
+                                <button mat-icon-button color="basic">
+                                    <mat-icon aria-hidden="false">restore_from_trash</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                
+                <mat-paginator [length]="8" [pageSize]="10" showFirstLastButtons>
+                </mat-paginator>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>

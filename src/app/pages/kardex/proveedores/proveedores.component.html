@@ -1,1 +1,126 @@
-<p>proveedores works!</p>
+<div class="friesp-page">
+    <mat-card class="card-page">
+
+        <div class="floating-icon-container">
+            <mat-icon class="floating-icon">groups</mat-icon>
+        </div>
+
+        <mat-card-header>
+            <mat-card-title class="title-card-page">Proveedores</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div fxLayout="column" fxLayoutGap="1rem">
+                <div fxLayout="column" class="filtro-page">
+                    <div fxLayout="row" fxLayoutGap="1rem">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(20% - 3rem)">
+                            <mat-label>RUC</mat-label>
+                            <input matInput placeholder="Ingrese RUC">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(20% - 3rem)">
+                            <mat-label>Nombre de la Empresa</mat-label>
+                            <input matInput placeholder="Ingrese Nombre de la Empresa">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(20% - 3rem)">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Ingrese Email">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="calc(20% - 3rem)">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput placeholder="Ingrese Teléfono">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" fxFlex="calc(20% - 3rem)">
+                            <mat-label>Estado de Proveedor</mat-label>
+                            <mat-select>
+                                <mat-option value="maytomen">Activo</mat-option>
+                                <mat-option value="mentomay">Desactivado</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary">Buscar</button>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between end">
+                    <h4 class="header-table">Lista de Proveedores</h4>
+                    <button mat-mini-fab color="primary">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z4">
+                    <!-- Columna Nro Proveedor -->
+                    <ng-container matColumnDef="nro">
+                        <th mat-header-cell *matHeaderCellDef> Nro. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nro}} </td>
+                    </ng-container>
+
+                    <!-- Columna RUC Proveedor -->
+                    <ng-container matColumnDef="ruc">
+                        <th mat-header-cell *matHeaderCellDef> RUC </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ruc}} </td>
+                    </ng-container>
+
+                    <!-- Columna Nombre Proveedor -->
+                    <ng-container matColumnDef="nombreempresa">
+                        <th mat-header-cell *matHeaderCellDef> Nombre de Empresa </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombreempresa}} </td>
+                    </ng-container>
+
+                    <!-- Columna E-Mail de Proveedor -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef> E-Mail de Proveedor </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
+                    <!-- Columna N° de Celular -->
+                    <ng-container matColumnDef="telefono">
+                        <th mat-header-cell *matHeaderCellDef> N° de Celular </th>
+                        <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+                    </ng-container>
+
+                    <!-- Columna Dirección de Proveedor -->
+                    <ng-container matColumnDef="direccion">
+                        <th mat-header-cell *matHeaderCellDef> Dirección de Proveedor </th>
+                        <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+                    </ng-container>
+
+                    <!-- Columna Estado de Proveedor -->
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado de Proveedor </th>
+                        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+                    </ng-container>
+
+                    <!-- Columna Acción -->
+                    <ng-container matColumnDef="accion">
+                        <th mat-header-cell *matHeaderCellDef> Acción </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div>
+                                <button mat-icon-button color="primary">
+                                    <mat-icon aria-hidden="false">edit icon</mat-icon>
+                                </button>
+                            </div>
+                            <div>
+                                <button mat-icon-button color="primary">
+                                    <mat-icon aria-hidden="false">edit icon</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                
+                <mat-paginator [length]="6" [pageSize]="10" showFirstLastButtons>
+                </mat-paginator>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>  
