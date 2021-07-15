@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Crear método de pago</h2>
+<mat-dialog-content>
+    <div fxLayout="column">
+        <h4>Seleccione tipo:</h4>
+
+        <mat-radio-group fxLayout="row" class="margin-rg">
+            <div fxLayout="column" fxFlex="50%" fxLayoutGap="0.5rem">
+                <mat-radio-button value="1">Option 1</mat-radio-button>
+                <mat-radio-button value="2">Option 2</mat-radio-button>
+            </div>
+            <div fxLayout="column" fxFlex="50%" fxLayoutGap="0.5rem">
+                <mat-radio-button value="3">Option 3</mat-radio-button>
+                <mat-radio-button value="4">Option 4</mat-radio-button>
+            </div>
+        </mat-radio-group>
+
+        <mat-form-field>
+            <mat-label>Nombre de entidad bancaria</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Número de cuenta (CC)</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Número de cuenta interbancaria (CCI)</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="warn" mat-dialog-close>CANCELAR</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">CREAR</button>
+</mat-dialog-actions>

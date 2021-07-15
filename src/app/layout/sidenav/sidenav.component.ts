@@ -13,6 +13,10 @@ import { ThemeService } from '../../../@fury/services/theme.service';
 })
 export class SidenavComponent implements OnInit, OnDestroy {
 
+  userImage: string = 'assets/img/avatars/default.jpg';
+  userName: string = 'Jessica Hancco';
+  userEmail: string = 'jhancco@friesp.com';
+
   sidenavUserVisible$ = this.themeService.config$.pipe(map(config => config.sidenavUserVisible));
 
   @Input()
