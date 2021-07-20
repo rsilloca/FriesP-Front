@@ -1,34 +1,70 @@
-<h2 mat-dialog-title>Crear método de pago</h2>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 mat-dialog-title>{{editar ? 'Editar método de pago' : 'Crear método de pago'}}</h2>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
 <mat-dialog-content>
-    <div fxLayout="column">
+    <div fxLayout="column" [formGroup]="form">
         <h4>Seleccione tipo:</h4>
 
-        <mat-radio-group fxLayout="row" class="margin-rg">
+        <mat-radio-group fxLayout="row" class="margin-rg" formControlName="tipo">
             <div fxLayout="column" fxFlex="50%" fxLayoutGap="0.5rem">
-                <mat-radio-button value="1">Option 1</mat-radio-button>
-                <mat-radio-button value="2">Option 2</mat-radio-button>
+                <mat-radio-button [value]="1">Contra entrega</mat-radio-button>
+                <mat-radio-button [value]="3">Pago por aplicación</mat-radio-button>
             </div>
             <div fxLayout="column" fxFlex="50%" fxLayoutGap="0.5rem">
-                <mat-radio-button value="3">Option 3</mat-radio-button>
-                <mat-radio-button value="4">Option 4</mat-radio-button>
+                <mat-radio-button [value]="2">Transferencia bancaria</mat-radio-button>
+                <mat-radio-button [value]="4">Pasarela de pago</mat-radio-button>
             </div>
         </mat-radio-group>
 
-        <mat-form-field>
-            <mat-label>Nombre de entidad bancaria</mat-label>
-            <input matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Número de cuenta (CC)</mat-label>
-            <input matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Número de cuenta interbancaria (CCI)</mat-label>
-            <input matInput>
-        </mat-form-field>
+        <div [ngSwitch]="form.get('tipo').value">
+            <p *ngSwitchCase="1">* No requiere agregar información adicional.</p>
+<div fxLayout="column" *ngSwitchCase="2">
+    <mat-form-field formControlName="entidad">
+        <mat-label>Nombre de entidad bancaria</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field formControlName="cc">
+        <mat-label>Número de cuenta (CC)</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field formControlName="cci">
+        <mat-label>Número de cuenta interbancaria (CCI)</mat-label>
+        <input matInput>
+    </mat-form-field>
+</div>
+<div fxLayout="column" *ngSwitchCase="3">
+    <mat-form-field formControlName="app">
+        <mat-label>Nombre de aplicación</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field formControlName="nroCelular">
+        <mat-label>Número de celular</mat-label>
+        <input matInput>
+        <span matPrefix>+51&nbsp;</span>
+    </mat-form-field>
+</div>
+<div fxLayout="column" *ngSwitchCase="4">
+    <mat-form-field formControlName="pasarela">
+        <mat-label>Pasarela de pago</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let p of pasarelas" [value]="p.id">{{p.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field formControlName="token">
+        <mat-label>Token público</mat-label>
+        <input matInput>
+    </mat-form-field>
+</div>
+        </div>
+
     </div>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
     <button mat-raised-button color="warn" mat-dialog-close>CANCELAR</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">CREAR</button>
+    <button mat-raised-button color="primary" (click)="guardarMetodoPago()">
+        {{editar ? 'GUARDAR CAMBIOS' : 'CREAR MÉTODO DE PAGO'}}
+    </button>
 </mat-dialog-actions>
